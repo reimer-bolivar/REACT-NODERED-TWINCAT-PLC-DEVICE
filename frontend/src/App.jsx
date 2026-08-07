@@ -11,13 +11,21 @@ import TendenciasView from './views/TendenciasView';
 import CalidadView from './views/CalidadView';
 import RS485View from './views/RS485View';
 import DiagnosticoView from './views/DiagnosticoView';
-import VFDControlView from './views/VFDControlView';
 
 // ADAM-6060 Views
 import AdamResumenView from './views/adam/AdamResumenView';
 import AdamEntradasDigitalesView from './views/adam/AdamEntradasDigitalesView';
 import AdamRelesView from './views/adam/AdamRelesView';
 import AdamEventosView from './views/adam/AdamEventosView';
+
+// VFD DELTA C2000 Views
+import VFDResumenView from './views/vfd/VFDResumenView';
+import VFDControlMainView from './views/vfd/VFDControlMainView';
+import VFDFrecuenciaView from './views/vfd/VFDFrecuenciaView';
+import VFDElectricasView from './views/vfd/VFDElectricasView';
+import VFDTendenciasView from './views/vfd/VFDTendenciasView';
+import VFDAlarmasView from './views/vfd/VFDAlarmasView';
+import VFDParametrosView from './views/vfd/VFDParametrosView';
 
 export default function App() {
   const [currentView, setCurrentView] = useState('resumen');
@@ -27,6 +35,8 @@ export default function App() {
     setActiveDevice(dev);
     if (dev === 'adam') {
       setCurrentView('adam-resumen');
+    } else if (dev === 'vfd') {
+      setCurrentView('vfd-resumen');
     } else if (dev === 'volison') {
       setCurrentView('resumen');
     }
@@ -34,7 +44,29 @@ export default function App() {
 
   const renderMainView = () => {
     if (activeDevice === 'vfd') {
-      return <VFDControlView />;
+      switch (currentView) {
+        case 'vfd-resumen':
+          return <VFDResumenView />;
+        case 'vfd-control':
+          return <VFDControlMainView />;
+        case 'vfd-frecuencia':
+          return <VFDFrecuenciaView />;
+        case 'vfd-electricas':
+          return <VFDElectricasView />;
+        case 'vfd-tendencias':
+          return <VFDTendenciasView />;
+        case 'vfd-alarmas':
+          return <VFDAlarmasView />;
+        case 'vfd-parametros':
+        case 'vfd-entradas':
+        case 'vfd-historial':
+        case 'vfd-comunicacion':
+        case 'vfd-diagnostico':
+        case 'vfd-mantenimiento':
+          return <VFDParametrosView />;
+        default:
+          return <VFDResumenView />;
+      }
     }
 
     if (activeDevice === 'adam') {

@@ -12,7 +12,11 @@ import {
   Layers,
   ShieldAlert,
   Server,
-  Network
+  Network,
+  Gauge,
+  AlertTriangle,
+  History,
+  Wrench
 } from 'lucide-react';
 
 export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
@@ -37,8 +41,33 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
     { id: 'adam-diagnostico', label: '15  Diagnóstico', icon: Settings },
   ];
 
-  const isAdam = activeDevice === 'adam';
-  const menuItems = isAdam ? adamMenuItems : volisonMenuItems;
+  const vfdMenuItems = [
+    { id: 'vfd-resumen', label: '16  Resumen', icon: LayoutDashboard },
+    { id: 'vfd-control', label: '17  Control', icon: Gauge },
+    { id: 'vfd-frecuencia', label: '18  Frecuencia', icon: Activity },
+    { id: 'vfd-electricas', label: '19  Variables eléctricas', icon: Zap },
+    { id: 'vfd-tendencias', label: '20  Tendencias', icon: TrendingUp },
+    { id: 'vfd-alarmas', label: '21  Alarmas', icon: AlertTriangle },
+    { id: 'vfd-parametros', label: '22  Parámetros', icon: Sliders },
+    { id: 'vfd-entradas', label: '23  Entradas / Salidas', icon: SlidersHorizontal },
+    { id: 'vfd-historial', label: '24  Historial', icon: History },
+    { id: 'vfd-comunicacion', label: '25  Comunicación', icon: Radio },
+    { id: 'vfd-diagnostico', label: '26  Diagnóstico', icon: Settings },
+  ];
+
+  let menuItems = volisonMenuItems;
+  let title = 'VOLISON ADM';
+  let subtitle = 'MÓDULO DE ADQUISICIÓN ANALÓGICA';
+
+  if (activeDevice === 'adam') {
+    menuItems = adamMenuItems;
+    title = 'ADAM-6060';
+    subtitle = 'MÓDULO I/O DIGITAL REMOTO (6 DI / 6 Relés)';
+  } else if (activeDevice === 'vfd') {
+    menuItems = vfdMenuItems;
+    title = 'VFD DELTA C2000';
+    subtitle = 'VARIADOR DE FRECUENCIA (55 kW / 75 HP)';
+  }
 
   return (
     <aside className="w-64 bg-[#071728] border-r border-[#1a3854] flex flex-col justify-between p-4 shrink-0 overflow-y-auto">
@@ -46,10 +75,10 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
         {/* Module Title */}
         <div className="mb-6 pb-4 border-b border-[#1a3854]">
           <h2 className="text-base font-black text-white tracking-wide uppercase">
-            {isAdam ? 'ADAM-6060' : 'VOLISON ADM'}
+            {title}
           </h2>
           <p className="text-[10px] text-[#00bdd6] font-bold tracking-wider uppercase mt-0.5">
-            {isAdam ? 'MÓDULO I/O DIGITAL REMOTO (6 DI / 6 Relés)' : 'MÓDULO DE ADQUISICIÓN ANALÓGICA'}
+            {subtitle}
           </p>
         </div>
 
@@ -62,7 +91,7 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
               <button
                 key={item.id}
                 onClick={() => setCurrentView(item.id)}
-                className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold transition-all ${
+                className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   isActive
                     ? 'bg-gradient-to-r from-[#00bdd6]/20 to-[#2563eb]/20 text-[#00bdd6] border-l-4 border-[#00bdd6] shadow-md shadow-cyan-500/10'
                     : 'text-[#8ab3cf] hover:bg-[#0f253b] hover:text-white'
@@ -91,20 +120,32 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
         <div className="space-y-2 text-xs">
           <div>
             <span className="text-[10px] font-bold text-[#57809e] uppercase block">COMUNICACIÓN</span>
-            <span className="font-semibold text-white">{isAdam ? 'ETHERNET / MODBUS TCP' : 'COM2 / RS-485'}</span>
+            <span className="font-semibold text-white">
+              {activeDevice === 'adam' ? 'ETHERNET / MODBUS TCP' : 'COM2 / RS-485'}
+            </span>
           </div>
           <div>
             <span className="text-[10px] font-bold text-[#57809e] uppercase block">PROTOCOLO</span>
-            <span className="font-semibold text-white">{isAdam ? 'Modbus TCP (IP 192.168.1.60)' : 'Modbus RTU'}</span>
+            <span className="font-semibold text-white">
+              {activeDevice === 'adam' ? 'Modbus TCP (IP 192.168.1.60)' : 'Modbus RTU'}
+            </span>
           </div>
           <div className="flex justify-between">
             <div>
-              <span className="text-[10px] font-bold text-[#57809e] uppercase block">ENTRADAS</span>
-              <span className="font-bold text-white font-mono">{isAdam ? '6 / 6 DI' : '8 / 8 AI'}</span>
+              <span className="text-[10px] font-bold text-[#57809e] uppercase block">
+                {activeDevice === 'vfd' ? 'FRECUENCIA' : 'ENTRADAS'}
+              </span>
+              <span className="font-bold text-white font-mono">
+                {activeDevice === 'vfd' ? '31.90 Hz' : activeDevice === 'adam' ? '6 / 6 DI' : '8 / 8 AI'}
+              </span>
             </div>
             <div>
-              <span className="text-[10px] font-bold text-[#57809e] uppercase block">{isAdam ? 'RELÉS' : 'SLAVE ID'}</span>
-              <span className="font-bold text-white font-mono">{isAdam ? '6 / 6 RO' : '1'}</span>
+              <span className="text-[10px] font-bold text-[#57809e] uppercase block">
+                {activeDevice === 'vfd' ? 'POTENCIA' : activeDevice === 'adam' ? 'RELÉS' : 'SLAVE ID'}
+              </span>
+              <span className="font-bold text-white font-mono">
+                {activeDevice === 'vfd' ? '12.3 kW' : activeDevice === 'adam' ? '6 / 6 RO' : '1'}
+              </span>
             </div>
           </div>
           <div>
