@@ -27,6 +27,12 @@ import VFDTendenciasView from './views/vfd/VFDTendenciasView';
 import VFDAlarmasView from './views/vfd/VFDAlarmasView';
 import VFDParametrosView from './views/vfd/VFDParametrosView';
 
+// N4DIM32 Views
+import N4DIM32ResumenView from './views/n4dim32/N4DIM32ResumenView';
+import N4DIM32TodasEntradasView from './views/n4dim32/N4DIM32TodasEntradasView';
+import N4DIM32GrupoDetailView from './views/n4dim32/N4DIM32GrupoDetailView';
+import N4DIM32EventosView from './views/n4dim32/N4DIM32EventosView';
+
 export default function App() {
   const [currentView, setCurrentView] = useState('resumen');
   const [activeDevice, setActiveDevice] = useState('volison');
@@ -37,12 +43,37 @@ export default function App() {
       setCurrentView('adam-resumen');
     } else if (dev === 'vfd') {
       setCurrentView('vfd-resumen');
+    } else if (dev === 'n4dim32') {
+      setCurrentView('n4-resumen');
     } else if (dev === 'volison') {
       setCurrentView('resumen');
     }
   };
 
   const renderMainView = () => {
+    if (activeDevice === 'n4dim32') {
+      switch (currentView) {
+        case 'n4-resumen':
+          return <N4DIM32ResumenView />;
+        case 'n4-entradas':
+          return <N4DIM32TodasEntradasView />;
+        case 'n4-g1':
+          return <N4DIM32GrupoDetailView groupId={1} />;
+        case 'n4-g2':
+          return <N4DIM32GrupoDetailView groupId={2} />;
+        case 'n4-g3':
+          return <N4DIM32GrupoDetailView groupId={3} />;
+        case 'n4-g4':
+          return <N4DIM32GrupoDetailView groupId={4} />;
+        case 'n4-eventos':
+        case 'n4-diagnostico':
+        case 'n4-configuracion':
+          return <N4DIM32EventosView />;
+        default:
+          return <N4DIM32ResumenView />;
+      }
+    }
+
     if (activeDevice === 'vfd') {
       switch (currentView) {
         case 'vfd-resumen':

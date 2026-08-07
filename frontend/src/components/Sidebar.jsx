@@ -16,7 +16,8 @@ import {
   Gauge,
   AlertTriangle,
   History,
-  Wrench
+  Wrench,
+  Grid
 } from 'lucide-react';
 
 export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
@@ -55,6 +56,18 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
     { id: 'vfd-diagnostico', label: '26  Diagnóstico', icon: Settings },
   ];
 
+  const n4dimMenuItems = [
+    { id: 'n4-resumen', label: '25  N4DIM32 · Resumen', icon: LayoutDashboard },
+    { id: 'n4-entradas', label: '26  N4DIM32 · 32 Entradas', icon: Grid },
+    { id: 'n4-g1', label: '27  N4DIM32 · Grupo 1', icon: SlidersHorizontal },
+    { id: 'n4-g2', label: '28  N4DIM32 · Grupo 2', icon: SlidersHorizontal },
+    { id: 'n4-g3', label: '29  N4DIM32 · Grupo 3', icon: SlidersHorizontal },
+    { id: 'n4-g4', label: '30  N4DIM32 · Grupo 4', icon: SlidersHorizontal },
+    { id: 'n4-eventos', label: '31  N4DIM32 · Eventos', icon: ShieldAlert },
+    { id: 'n4-diagnostico', label: '32  N4DIM32 · Diagnóstico', icon: Settings },
+    { id: 'n4-configuracion', label: '33  N4DIM32 · Configuración', icon: Wrench },
+  ];
+
   let menuItems = volisonMenuItems;
   let title = 'VOLISON ADM';
   let subtitle = 'MÓDULO DE ADQUISICIÓN ANALÓGICA';
@@ -67,6 +80,10 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
     menuItems = vfdMenuItems;
     title = 'VFD DELTA C2000';
     subtitle = 'VARIADOR DE FRECUENCIA (55 kW / 75 HP)';
+  } else if (activeDevice === 'n4dim32') {
+    menuItems = n4dimMenuItems;
+    title = 'N4DIM32';
+    subtitle = 'MÓDULO DE 32 ENTRADAS DIGITALES (24 VDC)';
   }
 
   return (
@@ -109,7 +126,7 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
       <div className="mt-6 pt-4 border-t border-[#1a3854] space-y-3">
         <div>
           <div className="text-[10px] font-bold uppercase tracking-wider text-[#57809e] mb-1">
-            ESTADO DEL DISPOSITIVO
+            ESTADO DEL MÓDULO
           </div>
           <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-extrabold text-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#20d69f]"></span>
@@ -127,7 +144,7 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
           <div>
             <span className="text-[10px] font-bold text-[#57809e] uppercase block">PROTOCOLO</span>
             <span className="font-semibold text-white">
-              {activeDevice === 'adam' ? 'Modbus TCP (IP 192.168.1.60)' : 'Modbus RTU'}
+              {activeDevice === 'adam' ? 'Modbus TCP (192.168.1.60)' : 'Modbus RTU (Slave 1)'}
             </span>
           </div>
           <div className="flex justify-between">
@@ -136,15 +153,15 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
                 {activeDevice === 'vfd' ? 'FRECUENCIA' : 'ENTRADAS'}
               </span>
               <span className="font-bold text-white font-mono">
-                {activeDevice === 'vfd' ? '31.90 Hz' : activeDevice === 'adam' ? '6 / 6 DI' : '8 / 8 AI'}
+                {activeDevice === 'vfd' ? '31.90 Hz' : activeDevice === 'n4dim32' ? '12 / 32 DI' : activeDevice === 'adam' ? '6 / 6 DI' : '8 / 8 AI'}
               </span>
             </div>
             <div>
               <span className="text-[10px] font-bold text-[#57809e] uppercase block">
-                {activeDevice === 'vfd' ? 'POTENCIA' : activeDevice === 'adam' ? 'RELÉS' : 'SLAVE ID'}
+                {activeDevice === 'vfd' ? 'POTENCIA' : activeDevice === 'adam' ? 'RELÉS' : 'TENSIÓN'}
               </span>
               <span className="font-bold text-white font-mono">
-                {activeDevice === 'vfd' ? '12.3 kW' : activeDevice === 'adam' ? '6 / 6 RO' : '1'}
+                {activeDevice === 'vfd' ? '12.3 kW' : activeDevice === 'n4dim32' ? '24.1 VDC' : activeDevice === 'adam' ? '6 / 6 RO' : '1'}
               </span>
             </div>
           </div>
