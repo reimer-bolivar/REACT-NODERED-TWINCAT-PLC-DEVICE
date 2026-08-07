@@ -21,7 +21,7 @@ const pieData = [
 ];
 
 const qualityTrendData = Array.from({ length: 15 }).map((_, i) => ({
-  time: `14:${05 + i * 4}`,
+  time: `14:${5 + i * 4}`,
   ai1: 96 + Math.sin(i) * 2,
   ai2: 94 + Math.cos(i) * 3,
   ai3: 82 + Math.sin(i * 1.5) * 5,
