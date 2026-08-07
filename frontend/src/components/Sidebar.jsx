@@ -7,11 +7,16 @@ import {
   ShieldCheck,
   Radio,
   Settings,
-  CheckCircle2
+  Zap,
+  Activity,
+  Layers,
+  ShieldAlert,
+  Server,
+  Network
 } from 'lucide-react';
 
-export default function Sidebar({ currentView, setCurrentView }) {
-  const menuItems = [
+export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
+  const volisonMenuItems = [
     { id: 'resumen', label: '01  Resumen', icon: LayoutDashboard },
     { id: 'entradas', label: '02  Entradas analógicas', icon: SlidersHorizontal },
     { id: 'escalamiento', label: '03  Escalamiento', icon: Sliders },
@@ -21,16 +26,30 @@ export default function Sidebar({ currentView, setCurrentView }) {
     { id: 'diagnostico', label: '07  Diagnóstico', icon: Settings },
   ];
 
+  const adamMenuItems = [
+    { id: 'adam-resumen', label: '08  Resumen', icon: LayoutDashboard },
+    { id: 'adam-entradas', label: '09  Entradas digitales', icon: SlidersHorizontal },
+    { id: 'adam-reles', label: '10  Relés', icon: Zap },
+    { id: 'adam-contadores', label: '11  Contadores', icon: Activity },
+    { id: 'adam-eventos', label: '12  Eventos', icon: ShieldAlert },
+    { id: 'adam-ethernet', label: '13  Ethernet', icon: Network },
+    { id: 'adam-modbus', label: '14  Modbus TCP', icon: Server },
+    { id: 'adam-diagnostico', label: '15  Diagnóstico', icon: Settings },
+  ];
+
+  const isAdam = activeDevice === 'adam';
+  const menuItems = isAdam ? adamMenuItems : volisonMenuItems;
+
   return (
     <aside className="w-64 bg-[#071728] border-r border-[#1a3854] flex flex-col justify-between p-4 shrink-0 overflow-y-auto">
       <div>
         {/* Module Title */}
         <div className="mb-6 pb-4 border-b border-[#1a3854]">
           <h2 className="text-base font-black text-white tracking-wide uppercase">
-            VOLISON ADM
+            {isAdam ? 'ADAM-6060' : 'VOLISON ADM'}
           </h2>
           <p className="text-[10px] text-[#00bdd6] font-bold tracking-wider uppercase mt-0.5">
-            MÓDULO DE ADQUISICIÓN ANALÓGICA
+            {isAdam ? 'MÓDULO I/O DIGITAL REMOTO (6 DI / 6 Relés)' : 'MÓDULO DE ADQUISICIÓN ANALÓGICA'}
           </p>
         </div>
 
@@ -72,20 +91,20 @@ export default function Sidebar({ currentView, setCurrentView }) {
         <div className="space-y-2 text-xs">
           <div>
             <span className="text-[10px] font-bold text-[#57809e] uppercase block">COMUNICACIÓN</span>
-            <span className="font-semibold text-white">COM2 / RS-485</span>
+            <span className="font-semibold text-white">{isAdam ? 'ETHERNET / MODBUS TCP' : 'COM2 / RS-485'}</span>
           </div>
           <div>
             <span className="text-[10px] font-bold text-[#57809e] uppercase block">PROTOCOLO</span>
-            <span className="font-semibold text-white">Modbus RTU</span>
+            <span className="font-semibold text-white">{isAdam ? 'Modbus TCP (IP 192.168.1.60)' : 'Modbus RTU'}</span>
           </div>
           <div className="flex justify-between">
             <div>
-              <span className="text-[10px] font-bold text-[#57809e] uppercase block">SLAVE ID</span>
-              <span className="font-bold text-white font-mono">1</span>
+              <span className="text-[10px] font-bold text-[#57809e] uppercase block">ENTRADAS</span>
+              <span className="font-bold text-white font-mono">{isAdam ? '6 / 6 DI' : '8 / 8 AI'}</span>
             </div>
             <div>
-              <span className="text-[10px] font-bold text-[#57809e] uppercase block">CANALES</span>
-              <span className="font-bold text-white font-mono">8 / 8</span>
+              <span className="text-[10px] font-bold text-[#57809e] uppercase block">{isAdam ? 'RELÉS' : 'SLAVE ID'}</span>
+              <span className="font-bold text-white font-mono">{isAdam ? '6 / 6 RO' : '1'}</span>
             </div>
           </div>
           <div>
