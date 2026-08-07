@@ -1,0 +1,790 @@
+[
+    {
+        "id": "eefa2cec673f8383",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ef3f20dfa94f3e5f",
+        "type": "tab",
+        "label": "VFD BL302 OPCUA TwinCAT v2",
+        "disabled": false,
+        "info": "Dashboard y servidor OPC UA en BL302. TwinCAT recibe consignas por Ethernet y controla COM7 hacia el PLC Delta. Este flujo no utiliza puertos seriales Linux ni nodos Modbus en el BL302."
+    },
+    {
+        "id": "endpoint_local_001",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://127.0.0.1:4840/UA/BL302",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "fase4_opcua_endpoint_001",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://127.0.0.1:4840/UA/BL302",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "fase4_opcua_endpoint_3x3_001",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://127.0.0.1:4840/UA/BL302",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "c5a1d9305cf74a0b",
+        "type": "ui_tab",
+        "name": "Variador",
+        "icon": "settings_input_component",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "d27b6deed48b4873",
+        "type": "ui_group",
+        "name": "Control del variador",
+        "tab": "c5a1d9305cf74a0b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "406a64b864414939",
+        "type": "ui_group",
+        "name": "Estado y diagnóstico",
+        "tab": "c5a1d9305cf74a0b",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7648d52bdf8524db",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "79c7f32e76ac42d6",
+        "type": "ui_tab",
+        "name": "Variador directo",
+        "icon": "settings_input_component",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4f8f92121dae467d",
+        "type": "ui_group",
+        "name": "Control del variador",
+        "tab": "79c7f32e76ac42d6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "73dcbce2aafd4a5d",
+        "type": "ui_group",
+        "name": "Estado OPC UA",
+        "tab": "79c7f32e76ac42d6",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4260d41fc3dfd68f",
+        "type": "modbus-client",
+        "name": "VFD RTU /dev/ttyUSB0 9600 8N1 ID1",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB0",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 50,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "b2e9c62f6b6d507f",
+        "type": "ui_tab",
+        "name": "Variador VFD",
+        "icon": "settings_input_component",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0e9c50c11a61b90f",
+        "type": "ui_group",
+        "name": "Control del motor",
+        "tab": "b2e9c62f6b6d507f",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "disabled": false,
+        "hidden": false,
+        "className": ""
+    },
+    {
+        "id": "fbf146d5c5921ff4",
+        "type": "modbus-client",
+        "name": "VFD RTU /dev/ttyUSB0 9600 8N1 ID1",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB0",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 50,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "dc625b99cf79b2a5",
+        "type": "ui_tab",
+        "name": "VFD Control Center",
+        "icon": "speed",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c5c80c98c1b514e7",
+        "type": "ui_group",
+        "name": "Centro de control",
+        "tab": "dc625b99cf79b2a5",
+        "order": 1,
+        "disp": false,
+        "width": 12,
+        "collapse": false,
+        "disabled": false,
+        "hidden": false,
+        "className": "vfd-pro-group"
+    },
+    {
+        "id": "a432bf89df4c9686",
+        "type": "ui_group",
+        "name": "Tendencia",
+        "tab": "dc625b99cf79b2a5",
+        "order": 2,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "disabled": false,
+        "hidden": false,
+        "className": "vfd-trend-group"
+    },
+    {
+        "id": "b9e35b088abe56b8",
+        "type": "ui_group",
+        "name": "Controles básicos de respaldo",
+        "tab": "dc625b99cf79b2a5",
+        "order": 3,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "disabled": false,
+        "hidden": true,
+        "className": ""
+    },
+    {
+        "id": "a100000000000101",
+        "type": "ui_tab",
+        "name": "VFD Control Center",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a100000000000102",
+        "type": "ui_group",
+        "name": "Control profesional",
+        "tab": "a100000000000101",
+        "order": 1,
+        "disp": false,
+        "width": "12",
+        "collapse": false,
+        "disabled": false,
+        "hidden": false,
+        "className": "vfd-dashboard-group"
+    },
+    {
+        "id": "75edaadc03ca391c",
+        "type": "comment",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "ARQUITECTURA: Web → BL302/Node-RED → OPC UA/TCP → TwinCAT PC → COM7 → PLC Delta → RS485 → VFD",
+        "info": "Antes de desplegar, deshabilite el servidor OPC UA anterior que utilice el puerto 53881. Mantenga el motor detenido durante las pruebas.",
+        "x": 550,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "83e429917c521425",
+        "type": "comment",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "No existe /dev/ttyUSB0 en esta arquitectura. COM7 pertenece al PC Windows y será atendido por TwinCAT.",
+        "info": "",
+        "x": 520,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "68a9a230025697f7",
+        "type": "inject",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Inicializar espacio OPC UA (5 s)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 150,
+        "wires": [
+            [
+                "572152c7e8ee7ef4"
+            ]
+        ]
+    },
+    {
+        "id": "572152c7e8ee7ef4",
+        "type": "function",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Crear VFD_Gateway y variables seguras",
+        "func": "const now = new Date().toISOString();\n\nfunction update(name, datatype, value) {\n    return {\n        payload: {\n            messageType: \"Variable\",\n            namespace: 1,\n            // node-red-contrib-opcua 0.2.244 indexa las variables como \"ns:nombre\".\n            variableName: \"1:\" + name,\n            datatype: datatype,\n            variableValue: value\n        }\n    };\n}\n\n// El nodo OpcUa-Server no tolera addVariable repetido y su deleteNode falla\n// cuando findNode devuelve null. Si este servidor ya fue inicializado, no se\n// reconstruye: solamente se restauran los valores de seguridad.\nif (flow.get(\"vfdAddressSpaceReady\") === true) {\n    let current = flow.get(\"vfdState\") || {};\n    current.frequencySetpointHz = 0.0;\n    current.frequencyRaw = 0;\n    current.motorCommand = 5;\n    current.requestedState = \"STOPPED\";\n    current.commandValid = true;\n    current.lastWebAction = \"SAFE_REINITIALIZATION\";\n    current.lastWebUpdate = now;\n    flow.set(\"vfdState\", current);\n\n    return [[\n        update(\"FrequencySetpointHz\", \"Double\", 0.0),\n        update(\"FrequencyRaw\", \"UInt16\", 0),\n        update(\"MotorCommand\", \"UInt16\", 5),\n        update(\"RequestedState\", \"String\", \"STOPPED\"),\n        update(\"CommandValid\", \"Boolean\", true)\n    ], {\n        payload: {\n            level: \"info\",\n            event: \"ADDRESS_SPACE_ALREADY_READY_SAFE_RESET\",\n            timestamp: now,\n            safeCommand: 5,\n            safeFrequencyHz: 0.0\n        }\n    }];\n}\n\nconst state = {\n    frequencySetpointHz: 0.0,\n    frequencyRaw: 0,\n    motorCommand: 5,\n    requestedState: \"STOPPED\",\n    commandSequence: 0,\n    commandValid: true,\n    webHeartbeat: 0,\n    webOnline: true,\n    twinCATOnline: false,\n    twinCATSession: \"NO_SESSION\",\n    plcFrequencyRawAck: 0,\n    plcCommandAck: 5,\n    vfdRunning: false,\n    vfdFault: false,\n    vfdStatusText: \"NO_FEEDBACK\",\n    lastWriteOk: false,\n    lastWriteStatus: \"WAITING_TWINCAT\",\n    lastWriteTimestamp: \"NONE\",\n    lastWebAction: \"SAFE_INITIALIZATION\",\n    lastWebUpdate: now,\n    serverStatus: \"INITIALIZING\",\n    endpoint: \"opc.tcp://172.28.76.226:53881/UA/VFDGateway\"\n};\n\nflow.set(\"vfdState\", state);\n\nfunction command(topic, opcuaCommand) {\n    return { topic: topic, payload: { opcuaCommand: opcuaCommand } };\n}\n\nfunction variable(name, datatype, value, description) {\n    return command(\n        \"ns=1;s=\" + name +\n        \";datatype=\" + datatype +\n        \";description=\" + description +\n        \";value=\" + String(value),\n        \"addVariable\"\n    );\n}\n\nconst commands = [\n    // Fijar Objects como padre antes de crear la carpeta de la aplicación.\n    command(\"ns=0;i=85\", \"setFolder\"),\n    command(\"ns=1;s=VFD_Gateway;description=Gateway OPC UA para TwinCAT y PLC Delta\", \"addFolder\"),\n    command(\"ns=1;s=VFD_Gateway\", \"setFolder\"),\n\n    variable(\"FrequencySetpointHz\", \"Double\", 0.0, \"Consigna web de frecuencia de 0 a 60 Hz\"),\n    variable(\"FrequencyRaw\", \"UInt16\", 0, \"Consigna escalada de 0 a 10000\"),\n    variable(\"MotorCommand\", \"UInt16\", 5, \"Comando de motor 1 ARRANQUE 5 PARADA\"),\n    variable(\"RequestedState\", \"String\", \"STOPPED\", \"Estado solicitado desde la web\"),\n    variable(\"CommandSequence\", \"UInt32\", 0, \"Secuencia monotona de ordenes web\"),\n    variable(\"CommandValid\", \"Boolean\", true, \"Resultado de validacion de la ultima orden\"),\n\n    variable(\"FrequencyRegister\", \"UInt16\", 4096, \"Direccion Modbus del VFD para frecuencia\"),\n    variable(\"CommandRegister\", \"UInt16\", 8192, \"Direccion Modbus del VFD para marcha y parada\"),\n    variable(\"ScaleMaxHz\", \"Double\", 60.0, \"Escala maxima de frecuencia\"),\n    variable(\"ScaleMaxRaw\", \"UInt16\", 10000, \"Escala maxima del registro del VFD\"),\n\n    variable(\"WebHeartbeat\", \"UInt32\", 0, \"Heartbeat del servidor web Node RED\"),\n    variable(\"WebOnline\", \"Boolean\", true, \"Estado del servidor web Node RED\"),\n    variable(\"TwinCATOnline\", \"Boolean\", false, \"Confirmacion escrita desde TwinCAT\"),\n\n    variable(\"LastWriteOk\", \"Boolean\", false, \"Confirmacion final de la transaccion PLC VFD\"),\n    variable(\"LastWriteStatus\", \"String\", \"WAITING_TWINCAT\", \"Estado de la ultima transaccion\"),\n    variable(\"LastWriteTimestamp\", \"String\", \"NONE\", \"Fecha de la ultima confirmacion\"),\n    variable(\"PlcFrequencyRawAck\", \"UInt16\", 0, \"Eco de frecuencia recibido desde el PLC\"),\n    variable(\"PlcCommandAck\", \"UInt16\", 5, \"Eco de comando recibido desde el PLC\"),\n    variable(\"VfdRunning\", \"Boolean\", false, \"Realimentacion de marcha del variador\"),\n    variable(\"VfdFault\", \"Boolean\", false, \"Realimentacion de falla del variador\"),\n    variable(\"VfdStatusText\", \"String\", \"NO_FEEDBACK\", \"Diagnostico escrito desde TwinCAT o PLC\")\n];\n\nflow.set(\"vfdAddressSpaceReady\", true);\n\nconst audit = {\n    payload: {\n        level: \"info\",\n        event: \"ADDRESS_SPACE_BUILD_REQUESTED\",\n        timestamp: now,\n        endpoint: state.endpoint,\n        safeCommand: 5,\n        safeFrequencyHz: 0.0\n    }\n};\n\nreturn [commands, audit];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 150,
+        "wires": [
+            [
+                "a243da4d2630b7b7"
+            ],
+            [
+                "f9a9029d64a2fd1e",
+                "685c41ab613fe50c"
+            ]
+        ]
+    },
+    {
+        "id": "a243da4d2630b7b7",
+        "type": "OpcUa-Server",
+        "z": "ef3f20dfa94f3e5f",
+        "port": "53881",
+        "name": "VFD OPC UA Server :53881",
+        "endpoint": "UA/VFDGateway",
+        "nodesetDir": "",
+        "autoAcceptUnknownCertificate": true,
+        "registerToDiscovery": false,
+        "constructDefaultAddressSpace": true,
+        "allowAnonymous": true,
+        "endpointNone": true,
+        "endpointSign": false,
+        "endpointSignEncrypt": false,
+        "endpointBasic128Rsa15": false,
+        "endpointBasic256": false,
+        "endpointBasic256Sha256": false,
+        "maxNodesPerBrowse": 0,
+        "maxNodesPerHistoryReadData": 0,
+        "maxNodesPerHistoryReadEvents": 0,
+        "maxNodesPerHistoryUpdateData": 0,
+        "maxNodesPerRead": 0,
+        "maxNodesPerWrite": 0,
+        "maxNodesPerMethodCall": 0,
+        "maxNodesPerRegisterNodes": 0,
+        "maxNodesPerNodeManagement": 0,
+        "maxMonitoredItemsPerCall": 0,
+        "maxNodesPerHistoryUpdateEvents": 0,
+        "maxNodesPerTranslateBrowsePathsToNodeIds": 0,
+        "x": 840,
+        "y": 210,
+        "wires": [
+            [
+                "1eaacad9a3011b5f",
+                "9e08ef4e00ca5a14"
+            ]
+        ]
+    },
+    {
+        "id": "1eaacad9a3011b5f",
+        "type": "function",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Procesar escrituras y sesiones OPC UA",
+        "func": "let state = flow.get(\"vfdState\");\nif (!state) {\n    return null;\n}\n\nconst p = msg.payload;\n\nif (msg.topic === \"Client-connected\") {\n    state.twinCATSession = String(p || \"OPC_UA_CLIENT\");\n    state.twinCATOnline = true;\n} else if (msg.topic === \"Client-disconnected\") {\n    state.twinCATSession = \"NO_SESSION\";\n    state.twinCATOnline = false;\n}\n\nif (p && typeof p === \"object\" && p.messageType === \"Variable\" &&\n    Object.prototype.hasOwnProperty.call(p, \"variableValue\")) {\n    const name = String(p.variableName || \"\").replace(/^\\d+:/, \"\");\n    const value = p.variableValue;\n\n    switch (name) {\n        case \"FrequencySetpointHz\": state.frequencySetpointHz = Number(value); break;\n        case \"FrequencyRaw\": state.frequencyRaw = Number(value); break;\n        case \"MotorCommand\": state.motorCommand = Number(value); break;\n        case \"RequestedState\": state.requestedState = String(value); break;\n        case \"CommandSequence\": state.commandSequence = Number(value); break;\n        case \"CommandValid\": state.commandValid = Boolean(value); break;\n        case \"WebHeartbeat\": state.webHeartbeat = Number(value); break;\n        case \"WebOnline\": state.webOnline = Boolean(value); break;\n        case \"TwinCATOnline\": state.twinCATOnline = Boolean(value); break;\n        case \"LastWriteOk\": state.lastWriteOk = Boolean(value); break;\n        case \"LastWriteStatus\": state.lastWriteStatus = String(value); break;\n        case \"LastWriteTimestamp\": state.lastWriteTimestamp = String(value); break;\n        case \"PlcFrequencyRawAck\": state.plcFrequencyRawAck = Number(value); break;\n        case \"PlcCommandAck\": state.plcCommandAck = Number(value); break;\n        case \"VfdRunning\": state.vfdRunning = Boolean(value); break;\n        case \"VfdFault\": state.vfdFault = Boolean(value); break;\n        case \"VfdStatusText\": state.vfdStatusText = String(value); break;\n        default: break;\n    }\n}\n\nflow.set(\"vfdState\", state);\nreturn { payload: { event: \"OPCUA_SERVER_OUTPUT\", topic: msg.topic || \"\", timestamp: new Date().toISOString() } };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 180,
+        "wires": [
+            [
+                "685c41ab613fe50c"
+            ]
+        ]
+    },
+    {
+        "id": "b76aa3baabc00cd8",
+        "type": "status",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Estado servidor OPC UA",
+        "scope": [
+            "a243da4d2630b7b7"
+        ],
+        "x": 180,
+        "y": 240,
+        "wires": [
+            [
+                "0cbfc0714ad0f7c5"
+            ]
+        ]
+    },
+    {
+        "id": "0cbfc0714ad0f7c5",
+        "type": "function",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Registrar estado del servidor",
+        "func": "let state = flow.get(\"vfdState\");\nconst status = msg.status || {};\nlet serverStatus = String(status.text || \"UNKNOWN\").toUpperCase();\nif (serverStatus.indexOf(\"RUNNING\") >= 0) {\n    serverStatus = \"RUNNING\";\n    // Un nuevo address space comienza vacío. El inject de 5 s lo construirá.\n    flow.set(\"vfdAddressSpaceReady\", false);\n}\nif (state) {\n    state.serverStatus = serverStatus;\n    flow.set(\"vfdState\", state);\n}\nreturn { payload: { event: \"SERVER_STATUS\", status: serverStatus } };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "685c41ab613fe50c"
+            ]
+        ]
+    },
+    {
+        "id": "b1839a99238f0279",
+        "type": "catch",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Capturar error OPC UA",
+        "scope": [
+            "a243da4d2630b7b7"
+        ],
+        "uncaught": false,
+        "x": 170,
+        "y": 290,
+        "wires": [
+            [
+                "7ea233cf8b0c5042"
+            ]
+        ]
+    },
+    {
+        "id": "7ea233cf8b0c5042",
+        "type": "function",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Reportar error sin detener dashboard",
+        "func": "let state = flow.get(\"vfdState\");\nif (state) {\n    state.serverStatus = \"ERROR\";\n    state.lastWriteOk = false;\n    state.lastWriteStatus = \"OPCUA_SERVER_ERROR\";\n    flow.set(\"vfdState\", state);\n}\n\nconst detail = msg.error && msg.error.message ? msg.error.message : \"Unknown OPC UA error\";\nreturn [\n    { payload: { event: \"SERVER_ERROR\", detail: detail } },\n    { payload: { level: \"error\", event: \"SERVER_ERROR\", detail: detail, timestamp: new Date().toISOString() } }\n];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 290,
+        "wires": [
+            [
+                "685c41ab613fe50c"
+            ],
+            [
+                "f9a9029d64a2fd1e"
+            ]
+        ]
+    },
+    {
+        "id": "deb145b9a833cf39",
+        "type": "inject",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Heartbeat web cada 2 s",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "8",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 350,
+        "wires": [
+            [
+                "953a057b406dce20"
+            ]
+        ]
+    },
+    {
+        "id": "953a057b406dce20",
+        "type": "function",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Actualizar WebHeartbeat",
+        "func": "let state = flow.get(\"vfdState\");\nif (!state) {\n    return null;\n}\n\nstate.webHeartbeat = (Number(state.webHeartbeat || 0) + 1) >>> 0;\nstate.webOnline = true;\nflow.set(\"vfdState\", state);\n\nfunction ua(name, datatype, value) {\n    return {\n        payload: {\n            messageType: \"Variable\",\n            namespace: 1,\n            // El servidor 0.2.244 requiere el prefijo del namespace para actualizar.\n            variableName: \"1:\" + name,\n            datatype: datatype,\n            variableValue: value\n        }\n    };\n}\n\nreturn [[\n    ua(\"WebHeartbeat\", \"UInt32\", state.webHeartbeat),\n    ua(\"WebOnline\", \"Boolean\", true)\n], { payload: { event: \"HEARTBEAT\", value: state.webHeartbeat } }];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 350,
+        "wires": [
+            [
+                "a243da4d2630b7b7"
+            ],
+            [
+                "685c41ab613fe50c"
+            ]
+        ]
+    },
+    {
+        "id": "8491361d659041f0",
+        "type": "ui_template",
+        "z": "ef3f20dfa94f3e5f",
+        "group": "a100000000000102",
+        "name": "VFD Control Center profesional",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "format": "<style>\n.nr-dashboard-theme md-content { background:#071626 !important; }\n.nr-dashboard-cardcontainer { padding:0 !important; }\n.vfd-shell { box-sizing:border-box; color:#eef8ff; font-family:Inter,Segoe UI,Arial,sans-serif; background:linear-gradient(145deg,#0b2135,#071522); border:1px solid #1c4864; border-radius:22px; padding:22px; box-shadow:0 22px 60px rgba(0,0,0,.35); }\n.vfd-header { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px; }\n.vfd-brand { display:flex; align-items:center; gap:13px; }\n.vfd-logo { width:52px; height:52px; border-radius:16px; display:grid; place-items:center; background:linear-gradient(135deg,#00bdd6,#2563eb); font-weight:900; font-size:25px; box-shadow:0 9px 28px rgba(0,189,214,.3); }\n.vfd-title { font-size:24px; font-weight:900; letter-spacing:-.4px; }\n.vfd-subtitle { color:#85b8d6; font-size:11px; letter-spacing:1.8px; text-transform:uppercase; margin-top:4px; }\n.vfd-badge { display:inline-flex; align-items:center; gap:7px; border:1px solid #31536a; background:#102b3e; padding:8px 12px; border-radius:999px; font-size:11px; font-weight:800; }\n.vfd-dot { width:9px; height:9px; border-radius:50%; background:#f7b731; box-shadow:0 0 12px currentColor; }\n.vfd-dot.ok { background:#20d69f; }.vfd-dot.err { background:#ff4d6d; }\n.vfd-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }\n.vfd-card { background:rgba(20,48,68,.72); border:1px solid #24475d; border-radius:16px; padding:15px; min-height:86px; }\n.vfd-label { color:#8eb8cf; font-size:10px; letter-spacing:1.3px; text-transform:uppercase; font-weight:800; }\n.vfd-value { font-size:25px; font-weight:900; margin-top:9px; line-height:1.1; overflow-wrap:anywhere; }\n.vfd-value small { font-size:12px; color:#8eb8cf; }\n.vfd-main { display:grid; grid-template-columns:1.25fr .75fr; gap:14px; margin-top:14px; }\n.vfd-panel { background:rgba(14,39,57,.78); border:1px solid #24475d; border-radius:18px; padding:18px; }\n.vfd-section-title { color:#a9cfe2; font-size:11px; font-weight:900; letter-spacing:1.4px; text-transform:uppercase; margin-bottom:14px; }\n.vfd-hz { font-size:47px; font-weight:950; letter-spacing:-2px; }.vfd-hz small { font-size:14px; letter-spacing:0; color:#8eb8cf; }\n.vfd-range { width:100%; accent-color:#19c4d5; margin:14px 0 12px; }\n.vfd-input-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }\n.vfd-input { width:100%; box-sizing:border-box; background:#061724; border:1px solid #2a5a76; color:white; border-radius:12px; padding:13px; font-size:17px; font-weight:800; }\n.vfd-btn { border:0; border-radius:12px; padding:13px 12px; color:#fff; font-weight:900; letter-spacing:.3px; cursor:pointer; transition:.18s transform,.18s filter; }\n.vfd-btn:hover { transform:translateY(-1px); filter:brightness(1.08); }\n.vfd-btn.apply { background:linear-gradient(135deg,#00aeca,#2563eb); }\n.vfd-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }\n.vfd-btn.start { background:linear-gradient(135deg,#12b886,#20c997); }\n.vfd-btn.stop { background:linear-gradient(135deg,#ef476f,#e03131); }\n.vfd-btn.safe { grid-column:1/-1; background:#2b3e50; border:1px solid #48657a; }\n.vfd-map { display:grid; gap:9px; }\n.vfd-map-row { display:grid; grid-template-columns:1fr auto; gap:12px; background:#071c2b; border-radius:11px; padding:11px 12px; color:#a8cee1; font-size:11px; }\n.vfd-map-row b { color:white; font-family:Consolas,monospace; }\n.vfd-warning { margin-top:12px; color:#ffd166; background:rgba(255,209,102,.08); border:1px solid rgba(255,209,102,.32); border-radius:12px; padding:11px; font-size:11px; line-height:1.45; }\n.vfd-footer { display:flex; justify-content:space-between; gap:10px; color:#6794ad; font-size:10px; margin-top:13px; flex-wrap:wrap; }\n.vfd-good { color:#35e6b0; }.vfd-bad { color:#ff6b81; }.vfd-warn { color:#ffd166; }\n@media (max-width:900px) { .vfd-grid{grid-template-columns:repeat(2,1fr)} .vfd-main{grid-template-columns:1fr} }\n@media (max-width:560px) { .vfd-grid{grid-template-columns:1fr} .vfd-header{align-items:flex-start;flex-direction:column} .vfd-input-row,.vfd-actions{grid-template-columns:1fr} .vfd-btn.safe{grid-column:auto} }\n</style>\n\n<div class=\"vfd-shell\" ng-init=\"commandHz=0; state={frequencySetpointHz:0,frequencyRaw:0,motorCommand:5,requestedState:'STOPPED',serverStatus:'INITIALIZING'}\">\n  <div class=\"vfd-header\">\n    <div class=\"vfd-brand\">\n      <div class=\"vfd-logo\">V</div>\n      <div>\n        <div class=\"vfd-title\">VFD Control Center</div>\n        <div class=\"vfd-subtitle\">BL302 · OPC UA · TwinCAT · PLC Delta · VFD</div>\n      </div>\n    </div>\n    <div class=\"vfd-badge\">\n      <span class=\"vfd-dot\" ng-class=\"{'ok':state.serverStatus==='RUNNING','err':state.serverStatus==='ERROR'}\"></span>\n      OPC UA {{state.serverStatus}}\n    </div>\n  </div>\n\n  <div class=\"vfd-grid\">\n    <div class=\"vfd-card\"><div class=\"vfd-label\">Frecuencia comandada</div><div class=\"vfd-value\">{{state.frequencySetpointHz | number:1}} <small>Hz</small></div></div>\n    <div class=\"vfd-card\"><div class=\"vfd-label\">Valor escalado</div><div class=\"vfd-value\">{{state.frequencyRaw}} <small>/ 10000</small></div></div>\n    <div class=\"vfd-card\"><div class=\"vfd-label\">Estado solicitado</div><div class=\"vfd-value\" style=\"font-size:17px\" ng-class=\"{'vfd-good':state.motorCommand===1,'vfd-bad':state.motorCommand===5}\">{{state.requestedState}}</div></div>\n    <div class=\"vfd-card\"><div class=\"vfd-label\">Última transacción</div><div class=\"vfd-value\" style=\"font-size:15px\" ng-class=\"{'vfd-good':state.lastWriteOk,'vfd-warn':!state.lastWriteOk}\">{{state.lastWriteStatus}}</div></div>\n  </div>\n\n  <div class=\"vfd-main\">\n    <div class=\"vfd-panel\">\n      <div class=\"vfd-section-title\">Control de frecuencia y motor</div>\n      <div class=\"vfd-hz\">{{commandHz | number:1}} <small>Hz · rango 0–60</small></div>\n      <input class=\"vfd-range\" type=\"range\" min=\"0\" max=\"60\" step=\"0.1\" ng-model=\"commandHz\">\n      <div class=\"vfd-input-row\">\n        <input class=\"vfd-input\" type=\"number\" min=\"0\" max=\"60\" step=\"0.1\" ng-model=\"commandHz\">\n        <button class=\"vfd-btn apply\" ng-click=\"applyFrequency()\">APLICAR Hz</button>\n      </div>\n      <div class=\"vfd-actions\">\n        <button class=\"vfd-btn start\" ng-click=\"startMotor()\">▶ SOLICITAR ARRANQUE</button>\n        <button class=\"vfd-btn stop\" ng-click=\"stopMotor()\">■ SOLICITAR PARADA</button>\n        <button class=\"vfd-btn safe\" ng-click=\"safeStop()\">PARADA SEGURA · 0 Hz + comando 5</button>\n      </div>\n      <div class=\"vfd-warning\">La interfaz emite solicitudes OPC UA. TwinCAT y el PLC deben validar permisos, enclavamientos, paro de emergencia, comunicación y estado del variador antes de ejecutar un arranque.</div>\n    </div>\n\n    <div class=\"vfd-panel\">\n      <div class=\"vfd-section-title\">Arquitectura y diagnóstico</div>\n      <div class=\"vfd-map\">\n        <div class=\"vfd-map-row\"><span>Endpoint OPC UA</span><b>:53881/UA/VFDGateway</b></div>\n        <div class=\"vfd-map-row\"><span>Registro frecuencia VFD</span><b>4096 · FC06</b></div>\n        <div class=\"vfd-map-row\"><span>Registro marcha/parada</span><b>8192 · 1 / 5</b></div>\n        <div class=\"vfd-map-row\"><span>TwinCAT / sesión OPC UA</span><b ng-class=\"{'vfd-good':state.twinCATOnline,'vfd-warn':!state.twinCATOnline}\">{{state.twinCATOnline ? 'ONLINE' : 'SIN CONFIRMAR'}}</b></div>\n        <div class=\"vfd-map-row\"><span>Eco PLC frecuencia</span><b>{{state.plcFrequencyRawAck}}</b></div>\n        <div class=\"vfd-map-row\"><span>Eco PLC comando</span><b>{{state.plcCommandAck}}</b></div>\n        <div class=\"vfd-map-row\"><span>Estado real VFD</span><b ng-class=\"{'vfd-good':state.vfdRunning,'vfd-bad':state.vfdFault}\">{{state.vfdStatusText}}</b></div>\n        <div class=\"vfd-map-row\"><span>Secuencia / heartbeat</span><b>{{state.commandSequence}} / {{state.webHeartbeat}}</b></div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"vfd-footer\">\n    <span>Escala: raw = round(Hz × 10000 / 60)</span>\n    <span>Node-RED no abre COM7: TwinCAT PC controla el enlace serial</span>\n  </div>\n</div>\n\n<script>\n(function(scope) {\n    scope.applyFrequency = function() {\n        scope.send({payload:{action:\"apply_frequency\", value:Number(scope.commandHz)}});\n    };\n    scope.startMotor = function() {\n        scope.send({payload:{action:\"start\"}});\n    };\n    scope.stopMotor = function() {\n        scope.send({payload:{action:\"stop\"}});\n    };\n    scope.safeStop = function() {\n        scope.commandHz = 0;\n        scope.send({payload:{action:\"safe_stop\"}});\n    };\n    scope.$watch('msg', function(msg) {\n        if (msg && msg.payload && msg.payload.uiState) {\n            scope.state = msg.payload.uiState;\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "vfd-dashboard-card",
+        "x": 1070,
+        "y": 500,
+        "wires": [
+            [
+                "a45aeb58cff850fb"
+            ]
+        ]
+    },
+    {
+        "id": "a45aeb58cff850fb",
+        "type": "function",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Validar orden recibida desde la web",
+        "func": "const p = msg.payload || {};\nlet state = flow.get(\"vfdState\");\n\nif (!state) {\n    node.error(\"El estado VFD no ha sido inicializado\", msg);\n    return [null, { payload: { level: \"error\", event: \"STATE_NOT_INITIALIZED\" } }];\n}\n\nconst now = new Date().toISOString();\n\nfunction ua(name, datatype, value) {\n    return {\n        payload: {\n            messageType: \"Variable\",\n            namespace: 1,\n            // El servidor 0.2.244 requiere el prefijo del namespace para actualizar.\n            variableName: \"1:\" + name,\n            datatype: datatype,\n            variableValue: value\n        }\n    };\n}\n\nfunction reject(reason) {\n    state.commandValid = false;\n    state.lastWebAction = \"REJECTED: \" + reason;\n    state.lastWebUpdate = now;\n    flow.set(\"vfdState\", state);\n    return [\n        ua(\"CommandValid\", \"Boolean\", false),\n        ua(\"LastWriteOk\", \"Boolean\", false),\n        ua(\"LastWriteStatus\", \"String\", \"WEB_REJECTED_\" + reason.replace(/\\s+/g, \"_\"))\n    ];\n}\n\nlet updates = [];\nlet event = String(p.action || \"\").toLowerCase();\nlet accepted = true;\nlet detail = \"\";\n\nif (event === \"apply_frequency\") {\n    let hz = Number(p.value);\n    if (!Number.isFinite(hz) || hz < 0 || hz > 60) {\n        accepted = false;\n        detail = \"FREQUENCY_OUT_OF_RANGE\";\n        updates = reject(detail);\n    } else {\n        hz = Math.round(hz * 10) / 10;\n        const raw = Math.round(hz * 10000 / 60);\n        state.frequencySetpointHz = hz;\n        state.frequencyRaw = raw;\n        state.lastWebAction = \"APPLY_FREQUENCY\";\n        detail = hz.toFixed(1) + \" Hz -> \" + raw;\n        updates.push(ua(\"FrequencySetpointHz\", \"Double\", hz));\n        updates.push(ua(\"FrequencyRaw\", \"UInt16\", raw));\n    }\n} else if (event === \"start\") {\n    state.motorCommand = 1;\n    state.requestedState = \"START_REQUESTED\";\n    state.lastWebAction = \"START_REQUESTED\";\n    detail = \"MotorCommand=1\";\n    updates.push(ua(\"MotorCommand\", \"UInt16\", 1));\n    updates.push(ua(\"RequestedState\", \"String\", state.requestedState));\n} else if (event === \"stop\") {\n    state.motorCommand = 5;\n    state.requestedState = \"STOP_REQUESTED\";\n    state.lastWebAction = \"STOP_REQUESTED\";\n    detail = \"MotorCommand=5\";\n    updates.push(ua(\"MotorCommand\", \"UInt16\", 5));\n    updates.push(ua(\"RequestedState\", \"String\", state.requestedState));\n} else if (event === \"safe_stop\") {\n    state.frequencySetpointHz = 0.0;\n    state.frequencyRaw = 0;\n    state.motorCommand = 5;\n    state.requestedState = \"SAFE_STOP_REQUESTED\";\n    state.lastWebAction = \"SAFE_STOP_REQUESTED\";\n    detail = \"0 Hz and MotorCommand=5\";\n    updates.push(ua(\"FrequencySetpointHz\", \"Double\", 0.0));\n    updates.push(ua(\"FrequencyRaw\", \"UInt16\", 0));\n    updates.push(ua(\"MotorCommand\", \"UInt16\", 5));\n    updates.push(ua(\"RequestedState\", \"String\", state.requestedState));\n} else {\n    accepted = false;\n    detail = \"UNKNOWN_ACTION\";\n    updates = reject(detail);\n}\n\nif (accepted) {\n    state.commandSequence = (Number(state.commandSequence || 0) + 1) >>> 0;\n    state.commandValid = true;\n    state.lastWriteOk = false;\n    state.lastWriteStatus = \"PENDING_TWINCAT\";\n    state.lastWebUpdate = now;\n    updates.push(ua(\"CommandSequence\", \"UInt32\", state.commandSequence));\n    updates.push(ua(\"CommandValid\", \"Boolean\", true));\n    updates.push(ua(\"LastWriteOk\", \"Boolean\", false));\n    updates.push(ua(\"LastWriteStatus\", \"String\", \"PENDING_TWINCAT\"));\n}\n\nflow.set(\"vfdState\", state);\n\nconst audit = {\n    payload: {\n        level: accepted ? \"info\" : \"error\",\n        event: event || \"unknown\",\n        accepted: accepted,\n        detail: detail,\n        sequence: state.commandSequence,\n        timestamp: now\n    }\n};\n\nreturn [updates, audit];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 500,
+        "wires": [
+            [
+                "a243da4d2630b7b7"
+            ],
+            [
+                "f9a9029d64a2fd1e",
+                "685c41ab613fe50c"
+            ]
+        ]
+    },
+    {
+        "id": "0aafff122426b21f",
+        "type": "inject",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Actualizar dashboard cada 1 s",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 500,
+        "wires": [
+            [
+                "685c41ab613fe50c"
+            ]
+        ]
+    },
+    {
+        "id": "685c41ab613fe50c",
+        "type": "function",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Modelo de estado del dashboard",
+        "func": "const s = flow.get(\"vfdState\") || {};\nconst hz = Number.isFinite(Number(s.frequencySetpointHz)) ? Number(s.frequencySetpointHz) : 0;\nconst raw = Number.isFinite(Number(s.frequencyRaw)) ? Number(s.frequencyRaw) : 0;\n\nconst uiState = {\n    frequencySetpointHz: hz,\n    frequencyRaw: raw,\n    motorCommand: Number(s.motorCommand || 5),\n    requestedState: s.requestedState || \"STOPPED\",\n    commandSequence: Number(s.commandSequence || 0),\n    commandValid: s.commandValid !== false,\n    webHeartbeat: Number(s.webHeartbeat || 0),\n    webOnline: s.webOnline !== false,\n    twinCATOnline: Boolean(s.twinCATOnline),\n    twinCATSession: s.twinCATSession || \"NO_SESSION\",\n    plcFrequencyRawAck: Number(s.plcFrequencyRawAck || 0),\n    plcCommandAck: Number(s.plcCommandAck || 5),\n    vfdRunning: Boolean(s.vfdRunning),\n    vfdFault: Boolean(s.vfdFault),\n    vfdStatusText: s.vfdStatusText || \"NO_FEEDBACK\",\n    lastWriteOk: Boolean(s.lastWriteOk),\n    lastWriteStatus: s.lastWriteStatus || \"WAITING_TWINCAT\",\n    lastWriteTimestamp: s.lastWriteTimestamp || \"NONE\",\n    lastWebAction: s.lastWebAction || \"NONE\",\n    lastWebUpdate: s.lastWebUpdate || \"NONE\",\n    serverStatus: s.serverStatus || \"INITIALIZING\",\n    endpoint: s.endpoint || \"opc.tcp://172.28.76.226:53881/UA/VFDGateway\"\n};\n\nreturn [\n    { payload: { uiState: uiState } },\n    { topic: \"Frecuencia comandada\", payload: hz }\n];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 500,
+        "wires": [
+            [
+                "8491361d659041f0"
+            ],
+            [
+                "cc78ad4e797cd03c"
+            ]
+        ]
+    },
+    {
+        "id": "cc78ad4e797cd03c",
+        "type": "ui_chart",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Tendencia de frecuencia comandada",
+        "group": "a100000000000102",
+        "order": 2,
+        "width": "12",
+        "height": "5",
+        "label": "Tendencia de frecuencia comandada",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Esperando consignas",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "60",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#13c4d7",
+            "#20c997",
+            "#ff4d6d",
+            "#ffd166",
+            "#7c83fd",
+            "#ffffff",
+            "#9ca3af",
+            "#2563eb",
+            "#ef4444"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1060,
+        "y": 570,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e08ef4e00ca5a14",
+        "type": "debug",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Salida servidor OPC UA",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 230,
+        "wires": []
+    },
+    {
+        "id": "f9a9029d64a2fd1e",
+        "type": "debug",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Auditoría de órdenes VFD",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3d162131a56c4040",
+        "type": "comment",
+        "z": "ef3f20dfa94f3e5f",
+        "name": "Prueba segura: enviar 12.0 Hz y confirmar en TwinCAT FrequencySetpointHz=12.0 y FrequencyRaw=2000. No arrancar.",
+        "info": "",
+        "x": 540,
+        "y": 650,
+        "wires": []
+    }
+]
