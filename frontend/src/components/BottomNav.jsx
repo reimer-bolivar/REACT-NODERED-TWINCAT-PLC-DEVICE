@@ -6,8 +6,8 @@ export default function BottomNav({ activeDevice, setActiveDevice }) {
     { id: 'volison', name: 'VOLISON ADM', sub: 'ACTIVO', icon: Box, status: 'ok' },
     { id: 'adam', name: 'ADAM-6060', sub: 'ONLINE', icon: Cpu, status: 'inactive' },
     { id: 'vfd', name: 'VFD (VARIADOR)', sub: 'OPC UA', icon: Gauge, status: 'vfd' },
-    { id: 'n4dim', name: 'N4DIM32', sub: 'STANDBY', icon: Layers, status: 'inactive' },
-    { id: 'asda', name: 'ASDA-A3', sub: 'SERVO', icon: Zap, status: 'inactive' },
+    { id: 'n4dim32', name: 'N4DIM32', sub: 'MÓDULO 32 DI', icon: Layers, status: 'inactive' },
+    { id: 'asda3', name: 'ASDA-A3', sub: 'SERVO DRIVE', icon: Zap, status: 'inactive' },
   ];
 
   return (
