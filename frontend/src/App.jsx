@@ -33,6 +33,16 @@ import N4DIM32TodasEntradasView from './views/n4dim32/N4DIM32TodasEntradasView';
 import N4DIM32GrupoDetailView from './views/n4dim32/N4DIM32GrupoDetailView';
 import N4DIM32EventosView from './views/n4dim32/N4DIM32EventosView';
 
+// ASDA-A3 Views
+import ASDA3ResumenView from './views/asda3/ASDA3ResumenView';
+import ASDA3EjesView from './views/asda3/ASDA3EjesView';
+import ASDA3ControlView from './views/asda3/ASDA3ControlView';
+import ASDA3PosicionView from './views/asda3/ASDA3PosicionView';
+import ASDA3VelocidadView from './views/asda3/ASDA3VelocidadView';
+import ASDA3TorqueView from './views/asda3/ASDA3TorqueView';
+import ASDA3MotionView from './views/asda3/ASDA3MotionView';
+import ASDA3AlarmasView from './views/asda3/ASDA3AlarmasView';
+
 export default function App() {
   const [currentView, setCurrentView] = useState('resumen');
   const [activeDevice, setActiveDevice] = useState('volison');
@@ -45,12 +55,37 @@ export default function App() {
       setCurrentView('vfd-resumen');
     } else if (dev === 'n4dim32') {
       setCurrentView('n4-resumen');
+    } else if (dev === 'asda3') {
+      setCurrentView('asda-resumen');
     } else if (dev === 'volison') {
       setCurrentView('resumen');
     }
   };
 
   const renderMainView = () => {
+    if (activeDevice === 'asda3') {
+      switch (currentView) {
+        case 'asda-resumen':
+          return <ASDA3ResumenView />;
+        case 'asda-ejes':
+          return <ASDA3EjesView />;
+        case 'asda-control':
+          return <ASDA3ControlView />;
+        case 'asda-posicion':
+          return <ASDA3PosicionView />;
+        case 'asda-velocidad':
+          return <ASDA3VelocidadView />;
+        case 'asda-torque':
+          return <ASDA3TorqueView />;
+        case 'asda-motion':
+          return <ASDA3MotionView />;
+        case 'asda-alarmas':
+          return <ASDA3AlarmasView />;
+        default:
+          return <ASDA3ResumenView />;
+      }
+    }
+
     if (activeDevice === 'n4dim32') {
       switch (currentView) {
         case 'n4-resumen':

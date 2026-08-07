@@ -17,7 +17,10 @@ import {
   AlertTriangle,
   History,
   Wrench,
-  Grid
+  Grid,
+  Cpu,
+  Target,
+  Navigation
 } from 'lucide-react';
 
 export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
@@ -68,6 +71,17 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
     { id: 'n4-configuracion', label: '33  N4DIM32 · Configuración', icon: Wrench },
   ];
 
+  const asda3MenuItems = [
+    { id: 'asda-resumen', label: '34  ASDA-A3 · Resumen', icon: LayoutDashboard },
+    { id: 'asda-ejes', label: '35  ASDA-A3 · Ejes', icon: Cpu },
+    { id: 'asda-control', label: '36  ASDA-A3 · Control', icon: Gauge },
+    { id: 'asda-posicion', label: '37  ASDA-A3 · Posición', icon: Target },
+    { id: 'asda-velocidad', label: '38  ASDA-A3 · Velocidad', icon: Activity },
+    { id: 'asda-torque', label: '39  ASDA-A3 · Torque', icon: Zap },
+    { id: 'asda-motion', label: '41  ASDA-A3 · Motion', icon: Navigation },
+    { id: 'asda-alarmas', label: '42  ASDA-A3 · Alarmas', icon: AlertTriangle },
+  ];
+
   let menuItems = volisonMenuItems;
   let title = 'VOLISON ADM';
   let subtitle = 'MÓDULO DE ADQUISICIÓN ANALÓGICA';
@@ -84,6 +98,10 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
     menuItems = n4dimMenuItems;
     title = 'N4DIM32';
     subtitle = 'MÓDULO DE 32 ENTRADAS DIGITALES (24 VDC)';
+  } else if (activeDevice === 'asda3') {
+    menuItems = asda3MenuItems;
+    title = 'ASDA-A3';
+    subtitle = 'SERVO DRIVE DELTA (EtherCAT / 750 W)';
   }
 
   return (
@@ -126,7 +144,7 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
       <div className="mt-6 pt-4 border-t border-[#1a3854] space-y-3">
         <div>
           <div className="text-[10px] font-bold uppercase tracking-wider text-[#57809e] mb-1">
-            ESTADO DEL MÓDULO
+            ESTADO DEL DISPOSITIVO
           </div>
           <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-extrabold text-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#20d69f]"></span>
@@ -138,30 +156,30 @@ export default function Sidebar({ currentView, setCurrentView, activeDevice }) {
           <div>
             <span className="text-[10px] font-bold text-[#57809e] uppercase block">COMUNICACIÓN</span>
             <span className="font-semibold text-white">
-              {activeDevice === 'adam' ? 'ETHERNET / MODBUS TCP' : 'COM2 / RS-485'}
+              {activeDevice === 'asda3' ? 'EtherCAT (CoE)' : activeDevice === 'adam' ? 'ETHERNET / MODBUS TCP' : 'COM2 / RS-485'}
             </span>
           </div>
           <div>
             <span className="text-[10px] font-bold text-[#57809e] uppercase block">PROTOCOLO</span>
             <span className="font-semibold text-white">
-              {activeDevice === 'adam' ? 'Modbus TCP (192.168.1.60)' : 'Modbus RTU (Slave 1)'}
+              {activeDevice === 'asda3' ? 'EtherCAT CoE (Nodo 3)' : activeDevice === 'adam' ? 'Modbus TCP (192.168.1.60)' : 'Modbus RTU'}
             </span>
           </div>
           <div className="flex justify-between">
             <div>
               <span className="text-[10px] font-bold text-[#57809e] uppercase block">
-                {activeDevice === 'vfd' ? 'FRECUENCIA' : 'ENTRADAS'}
+                {activeDevice === 'asda3' ? 'POSICIÓN' : activeDevice === 'vfd' ? 'FRECUENCIA' : 'ENTRADAS'}
               </span>
               <span className="font-bold text-white font-mono">
-                {activeDevice === 'vfd' ? '31.90 Hz' : activeDevice === 'n4dim32' ? '12 / 32 DI' : activeDevice === 'adam' ? '6 / 6 DI' : '8 / 8 AI'}
+                {activeDevice === 'asda3' ? '12,345.67' : activeDevice === 'vfd' ? '31.90 Hz' : activeDevice === 'n4dim32' ? '12 / 32 DI' : activeDevice === 'adam' ? '6 / 6 DI' : '8 / 8 AI'}
               </span>
             </div>
             <div>
               <span className="text-[10px] font-bold text-[#57809e] uppercase block">
-                {activeDevice === 'vfd' ? 'POTENCIA' : activeDevice === 'adam' ? 'RELÉS' : 'TENSIÓN'}
+                {activeDevice === 'asda3' ? 'VELOCIDAD' : activeDevice === 'vfd' ? 'POTENCIA' : activeDevice === 'adam' ? 'RELÉS' : 'TENSIÓN'}
               </span>
               <span className="font-bold text-white font-mono">
-                {activeDevice === 'vfd' ? '12.3 kW' : activeDevice === 'n4dim32' ? '24.1 VDC' : activeDevice === 'adam' ? '6 / 6 RO' : '1'}
+                {activeDevice === 'asda3' ? '2500 rpm' : activeDevice === 'vfd' ? '12.3 kW' : activeDevice === 'n4dim32' ? '24.1 VDC' : activeDevice === 'adam' ? '6 / 6 RO' : '1'}
               </span>
             </div>
           </div>
